@@ -1,0 +1,449 @@
+@import "bootstrap/scss/mixins/buttons";
+@import "variables";
+@import "themes";
+
+$dark-bootstrap-theme: map-get($dark-theme, bootstrap);
+$light-bootstrap-theme: map-get($light-theme, bootstrap);
+
+$dark-theme-input: map-get($dark-theme, input);
+$light-theme-input: map-get($light-theme, input);
+
+$btn-font-weight: 500;
+$font-family-base: $font-family-base;
+
+// BUTTONS
+//override bootstrap
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+$input-btn-focus-color: none;
+$btn-focus-width: 0;
+$btn-font-family: $font-family-base;
+
+// ----------------------------------------------
+//                  DARK THEME
+// ----------------------------------------------
+
+.dark-theme {
+  $primary: map-get($dark-bootstrap-theme, primary);
+  $grid-columns: $grid-cols;
+  $grid-gutter-width: $grid-gutter;
+  $container-max-widths: $grid-max-widths;
+  $input-color: map-get($dark-theme-input, color);
+  $input-placeholder-color: map-get($dark-theme-input, place-holder-color);
+  $input-bg: map-get($dark-theme-input, background-color);
+  //$input-disabled-bg: map-get($dark-theme-input, background-color-disabled);
+  $input-border-radius: map-get($dark-theme-input, border-radius);
+  $input-border-color: map-get($dark-theme-input, border-color);
+  $input-border-width: map-get($dark-theme-input, border-width);
+  $input-focus-color: map-get($dark-theme-input, focus-color);
+  $input-focus-border-color: map-get($dark-theme-input, focus-border-color);
+  $input-height: map-get($light-theme-input, height);
+  $link-hover-color: $blue-200;
+  $link-color: $blue-300;
+  $label-margin-bottom: 0;
+
+  $button: map-get($dark-theme, button);
+
+
+  //@import '~bootstrap/scss/bootstrap.scss';
+  @import "bootstrap/scss/functions";
+  @import "bootstrap/scss/variables";
+  @import "bootstrap/scss/mixins";
+  @import "bootstrap/scss/root";
+  @import "bootstrap/scss/reboot";
+  @import "bootstrap/scss/grid";
+  @import "bootstrap/scss/buttons";
+  @import "bootstrap/scss/button-group";
+  @import "bootstrap/scss/card";
+  @import "bootstrap/scss/utilities";
+
+  label {
+    display: inline-flex;
+  }
+
+  .btn {
+    font-size: 12px;
+    line-height: normal;
+    letter-spacing: 0.03em;
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+
+  .btn-neon {
+    font-size: 12px;
+    font-weight: 500;
+    color: $blue-500;
+    height: 32px;
+    border-radius: 4px;
+    background-color: $neon-yellow;
+    padding: 0 32px;
+
+    &:hover:not([disabled]) {
+      background-color: $neon-yellow-hover;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    border: none;
+
+  }
+
+  .btn-dark-fill {
+    height: 32px;
+    border-width: 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color ease-in-out 0.3s;
+    background-color: $blue-600;
+    color: $blue-280;
+    margin: 0 6px !important;
+
+    &:hover:enabled {
+      background-color: $purple;
+      color: white;
+    }
+
+    &:active:enabled {
+      background-color: $purple;
+    }
+
+    &:disabled {
+      cursor: auto;
+      pointer-events: none !important;
+    }
+  }
+
+  $yiq-text-dark: map-get($button, color);
+  $yiq-text-light: map-get($button, color);
+  .btn-cml-primary {
+    @include button-variant(
+      map-get($button, background-color),
+      map-get($button, border-color),
+      map-get($button, background-color-hover),
+      map-get($button, border-color-hover),
+      map-get($button, background-color-focus),
+      map-get($button, border-color-focus)
+    );
+    &:hover {
+      color: $blue-200;
+    }
+    &:focus {
+      background-color: $blue-600;
+      border-color: $blue-600;
+      color: $blue-300;
+      &:hover {
+        background-color: $blue-500;
+        border-color: $blue-500;
+        color: $blue-200;
+      }
+    }
+  }
+
+  .btn:disabled {
+    opacity: 0.4;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $blue-grey;
+    background-color: $black;
+    background-clip: padding-box;
+    border: 1px solid $blue-500;
+    border-radius: 4px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    &:disabled {
+      background-color: $black;
+    }
+
+    &:hover {
+      border-color: $blue-400
+    }
+
+    &:hover:focus {
+      border-color: $blue-300
+    }
+  }
+
+  .btn-outline-neon {
+    height: 32px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: $white;
+    border: solid 1px $neon-yellow;
+    padding: 0 32px;
+    font-size: 12px;
+    color: $blue-500;
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: #f8f9fa; // TODO: ask brio.
+      border: solid 1px $neon-yellow-hover;
+    }
+
+    &:focus {
+      background-color: #f8f9fa;
+      border: solid 1px $neon-yellow-hover;
+    }
+  }
+
+  .btn-outline-dark {
+    border-color: $blue-600;
+    color: $blue-300;
+    background-color: transparent;
+    &:hover {
+      color: $blue-200;
+      border-color: $blue-500;
+      background-color: $blue-500;
+    }
+  }
+  
+  .btn.btn-icon {
+    color: $blue-300;
+    &:hover {
+      background-color: $blue-500;
+    }
+  }
+
+  .table {
+    color: $blue-100;
+  }
+}
+
+
+// ----------------------------------------------
+//                  LIGHT THEME
+// ----------------------------------------------
+
+.light-theme {
+  $primary: map-get($light-bootstrap-theme, primary);
+  $secondary: $white;
+  $grid-columns: $grid-cols;
+  $grid-gutter-width: $grid-gutter;
+  $container-max-widths: $grid-max-widths;
+
+  $input-color: map-get($light-theme-input, color);
+  $input-placeholder-color: map-get($light-theme-input, place-holder-color);
+  $input-bg: map-get($light-theme-input, background-color);
+  //$input-disabled-bg: map-get($light-theme-input, background-color-disabled);
+  $input-border-radius: map-get($light-theme-input, border-radius);
+  $input-border-color: map-get($light-theme-input, border-color);
+  $input-border-width: map-get($light-theme-input, border-width);
+  $input-focus-color: map-get($light-theme-input, focus-color);
+  $input-focus-border-color: map-get($light-theme-input, focus-border-color);
+  $input-active-border-color: map-get($light-theme-input, focus-border-color);
+  $input-focus-box-shadow: map-get($light-theme-input, focus-box-shadow);
+  $input-focus-bg: map-get($light-theme-input, focus-bg);
+  $input-height: map-get($light-theme-input, height);
+  $label-margin-bottom: 0;
+
+  //@import '~bootstrap/scss/bootstrap.scss';
+  @import "bootstrap/scss/functions";
+  @import "bootstrap/scss/variables";
+  @import "bootstrap/scss/mixins";
+  @import "bootstrap/scss/root";
+  @import "bootstrap/scss/reboot";
+  @import "bootstrap/scss/grid";
+  @import "bootstrap/scss/buttons";
+  @import "bootstrap/scss/button-group";
+  @import "bootstrap/scss/card";
+  @import "bootstrap/scss/utilities";
+
+  label {
+    display: inline-flex;
+  }
+
+  .btn {
+    font-size: 11px;
+    line-height: normal;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary {
+    color: map-get($light-bootstrap-theme, primary-font-color) !important;
+
+    &:focus {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  .btn-cml-primary {
+    @include button-variant(
+      $primary,
+      $primary,
+    );
+  }
+
+  .btn-secondary {
+    height: 32px;
+    border: solid 1px $blue-250;
+    color: $blue-480;
+    font-size: 11px;
+
+    &:hover {
+      border: solid 1px $blue-300;
+      color: $blue-300;
+      background-color: $white;
+    }
+
+    &:active,
+    &:focus {
+      border: solid 1px $blue-250 !important;
+      color: $blue-400 !important;
+      background-color: white !important;
+      box-shadow: none !important;
+    }
+
+    &:focus {
+      color: $blue-480 !important;
+    }
+
+    &:disabled {
+      border-color: $blue-250;
+      color: $blue-250;
+      opacity: 0.4;
+    }
+  }
+
+  .btn-dark-fill {
+    height: 32px;
+    border-width: 0;
+    border-radius: 4px;
+    background-color: $grey-purple;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    color: $white;
+    transition: background-color ease-in-out 0.3s;
+
+    &.terminal {
+      background-color: $blue-600;
+      color: $blue-280;
+      margin: 0 6px !important;
+      padding: 0 12px;
+      &:hover:enabled {
+        color: $blue-200;
+      }
+    }
+
+    &:hover:enabled {
+      background-color: $blue-500;
+      color: white;
+    }
+
+    &:active:enabled {
+      background-color: $purple;
+    }
+
+    &:disabled {
+      cursor: auto;
+      pointer-events: none !important;
+    }
+  }
+
+  .btn-neon {
+    font-size: 12px;
+    font-weight: 500;
+    color: $blue-500;
+    height: 32px;
+    border-radius: 4px;
+    background-color: $neon-yellow;
+    padding: 0 32px;
+    transition: background-color ease-in-out 0.3s;
+
+    &:hover:not([disabled]) {
+      background-color: $neon-yellow-hover;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    border: none;
+
+  }
+
+  .btn-outline-neon {
+    height: 32px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: $white;
+    border: solid 1px $neon-yellow;
+    padding: 0 32px;
+    color: $blue-500;
+    font-size: 12px;
+
+    &:hover {
+      background-color: #f8f9fa; // TODO: ask brio.
+      border: solid 1px $neon-yellow-hover;
+    }
+
+    &:focus {
+      background-color: #f8f9fa; // TODO: ask brio.
+      border: solid 1px $neon-yellow-hover;
+    }
+  }
+
+  .form-control {
+    color: $blue-500;
+    background-color: $white;
+    border-color: $cloudy-blue-two;
+
+    &:hover {
+      border-color: $blue-300
+    }
+
+    &:hover:focus {
+      border-color: $blue-400
+    }
+  }
+
+}
+
+
+/*  ALERT */
+.ai-alert {
+  max-width: 400px;
+
+  i {
+    margin-top: 1px;
+  }
+}
+
+label.mat-slide-toggle-label {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.btn.btn-icon {
+  padding: 6px;
+  border: none;
+  line-height: 0;
+
+  &:not([disabled]) {
+    &:hover {
+      color: $blue-100;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    cursor: default;
+  }
+}

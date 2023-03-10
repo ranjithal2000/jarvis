@@ -1,0 +1,15 @@
+<div class="sm-menu-header">CUSTOMIZE COLUMNS</div>
+<div class="list-container">
+  <sm-menu-item *ngFor="let col of tableCols; trackBy: trackById"
+                [itemLabel]="col.header"
+                [checked]="!(col?.hidden)"
+                [selectable]="true"
+                [removable]="!!col.metric_hash || col.isParam || col.type==='metadata'  || col.type==='hdmd'"
+                [itemValue]="col.id"
+                (removeItemClicked)="removeColFromList.emit($event)"
+                (itemClicked)="selectedTableColsChanged.emit(col)">
+  </sm-menu-item>
+</div>
+<div class="loader" [ngClass]="{'d-none': !isLoading}">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>

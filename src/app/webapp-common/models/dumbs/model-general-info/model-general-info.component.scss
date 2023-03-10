@@ -1,0 +1,22 @@
+@import "../../../layout/layout.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 64px 24px;
+
+  a[href] {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .preserve-spaces {
+    white-space: pre-wrap;
+  }
+
+  ::ng-deep .editable-div .form-control {
+    height: 74px;
+  }
+}

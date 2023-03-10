@@ -1,0 +1,24 @@
+<div
+  *ngIf="label"
+  class="chips"
+  [ngStyle]="{maxWidth: maxWidth}"
+  (click)="$event.stopPropagation()"
+  (mousedown)="$event.stopPropagation()"
+>
+  <span class="label"
+        [style.color]="color"
+        [style.background]="backgroundColor">
+    <span *ngIf="!colorIsForced" class="dot-container">
+      <span #dot class="dot pallete-cursor"
+            [ngStyle]="{backgroundColor: color}"
+            [colorButtonRef]="dot"
+            [smChooseColor]="colorTuple"
+            [stringToColor]="label">
+      </span>
+    </span>
+    <span smTooltip="label.length > 12 ? label : ''" class="label-text ellipsis">{{label}}</span>
+    <span class="pointer" *ngIf="allowRemove" (mousedown)="$event.stopPropagation(); $event.preventDefault()" (click)="remove.emit($event); $event.stopPropagation()">
+      <i class="al-icon al-ico-dialog-x xs pointer"></i>
+    </span>
+  </span>
+</div>

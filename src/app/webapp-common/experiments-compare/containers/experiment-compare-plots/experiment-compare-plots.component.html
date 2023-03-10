@@ -1,0 +1,28 @@
+<div class="d-flex h-100">
+  <div class="list-container">
+    <sm-selectable-filter-list
+      checkAllIcon="al-ico-show"
+      placeholder="Find plots"
+      [list]="graphList"
+      [selected]="selectedGraph"
+      [checkedList]="listOfHidden | async"
+      [searchTerm]="searchTerm$ | async"
+      (itemSelect)="metricSelected($event)"
+      (hiddenChanged)="hiddenListChanged($event)"
+      (searchTermChanged)="searchTermChanged($event)"
+    >
+    </sm-selectable-filter-list>
+  </div>
+  <div class="graphs-container h-100">
+    <sm-experiment-graphs
+      [metrics]="graphs"
+      [isCompare]="true"
+      [isGroupGraphs]="true"
+      [hiddenList]="listOfHidden | async"
+      (createEmbedCode)="createEmbedCode($event)"
+      (resetGraphs)="resetMetrics()"
+    >
+    </sm-experiment-graphs>
+  </div>
+</div>
+

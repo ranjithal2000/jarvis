@@ -1,0 +1,67 @@
+<div class="logo">
+   <img src="assets/JARVIS_Logo(J).png" class="logo-a" alt="logo" width="35" height="45">
+</div>
+
+<ng-container *ngIf="currentUser">
+  <div #container class="items-container" [class.on-scrolling]="scrolling">
+   <a class="item  al-ico-home"
+       routerLink="/portal"
+       routerLinkActive="active"
+       smTooltip="PORTAL"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item al-ico-projects"
+       routerLink="/dashboard"
+       routerLinkActive="active"
+       (click)="resetSearch()"
+       smTooltip="DASHBOARD"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item project-icon i-move-to-project"
+       smTooltip="PROJECTS"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right"
+       routerLink="/projects"
+       routerLinkActive="active">
+    </a>
+    <a class="item al-ico-datasets"
+       routerLink="/datasets"
+       routerLinkActive="active"
+       smTooltip="DATASETS"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item al-ico-pipelines"
+       routerLink="/pipelines"
+       routerLinkActive="active"
+       smTooltip="PIPELINES"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item al-ico-reports"
+       routerLink="/reports"
+       routerLinkActive="active"
+       smTooltip="REPORTS"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item al-ico-queues"
+       routerLink="/workers-and-queues"
+       routerLinkActive="active"
+       smTooltip="WORKERS & QUEUES"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    
+  </div>
+</ng-container>
+
+<div *ngIf="currentUser" class="account">
+  <a *ngIf="environment.slackLink" class="item" [href]="environment.slackLink"
+     target="_blank"
+     smTooltip="Community support on Slack" [matTooltipShowDelay]="0" matTooltipPosition="right">
+    <i class="i-slack-mark-color"></i>
+  </a>
+</div>

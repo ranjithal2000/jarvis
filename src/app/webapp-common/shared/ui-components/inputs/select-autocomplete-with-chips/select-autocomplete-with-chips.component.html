@@ -1,0 +1,60 @@
+<ng-form #autoSelectForm='ngForm'>
+  <mat-form-field [appearance]="appearance" hideRequiredMarker floatLabel="never" [class]="formFieldClass">
+    <div class="d-flex">
+      <mat-chip-list #chipList aria-label="Fruit selection" [disabled]="disabled">
+        <ng-container *ngIf="multiple">
+          <sm-chips *ngFor="let item of val; trackBy: trackByFn"
+                    [label]="item.label"
+                    [allowRemove]="multiple && clearable && !disabled"
+                    (remove)="remove(item)"
+          >
+          </sm-chips>
+        </ng-container>
+        <sm-chips
+          *ngIf="!multiple && val"
+          [label]="val?.label"
+          [allowRemove]="clearable"
+          (remove)="remove()"
+        ></sm-chips>
+
+        <input
+          #autocompleteInput
+          matInput
+          [placeholder]="!val && placeholder"
+          [ngModel]="val"
+          [name]="name"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [disabled]="disabled"
+          (ngModelChange)="selected($event)"
+          (click)="!autocomplete.panelOpen && autocomplete.openPanel()"
+          class="chips-input"
+        >
+
+
+      </mat-chip-list>
+      <i *ngIf="!disabled"
+        [class]="'al-icon sm pl-2 mr-1 ml-auto ' + (val ? (multiple && clearable? 'al-ico-dropdown-arrow' : 'al-ico-dialog-x pointer') : 'al-ico-dropdown-arrow')"
+        (click)="val && !(multiple && clearable) && removeLastChip(); autocompleteInput.focus();"
+        smClickStopPropagation></i>
+    </div>
+
+    <mat-autocomplete #auto="matAutocomplete"
+                      [displayWith]="displayFn"
+                      [class]="formFieldClass"
+                      [classList]="formFieldClass"
+                      autoActiveFirstOption>
+      <mat-option *ngIf="filterText && isNewName && optionAddable"
+                  class="item"
+                  [value]="{label:filterText, value:filterText}"
+                  (onSelectionChange)="customOptionAdded.emit($event)">
+        "{{filterText}}"<span class="new">(Add item)</span>
+      </mat-option>
+      <mat-option *ngFor="let option of (filteredItems | async); trackBy: trackByFn" [value]="option">
+        {{option.label}}
+      </mat-option>
+    </mat-autocomplete>
+
+  </mat-form-field>
+</ng-form>

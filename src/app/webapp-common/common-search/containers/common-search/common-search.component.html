@@ -1,0 +1,27 @@
+<span class="search-container" [class.open]="isSearching$ | async">
+  <sm-search
+    #search
+    class="search-header"
+    [class.regex-error]="regexError"
+    [value]="(searchQuery$ | async)?.original"
+    [placeholder]="searchPlaceholder$ | async"
+    [hideIcons]="true"
+    [minimumChars]="minChars"
+    (focusout)="onSearchFocusOut()"
+    (valueChanged)="onSearchValueChanged($event)"
+  >
+    <i *ngIf="regexError" class="regexp al-icon al-ico-error-circle pointer" [smTooltip]="regexError" [matTooltipPosition]="'below'"></i>
+    <i
+      class="regexp al-ico-regex pointer"
+      smClickStopPropagation
+      [smTooltip]="'Regex'" [matTooltipPosition]="'below'"
+      [class.active]="regExp"
+      (click)="toggleRegExp(); search.searchBarInput.nativeElement.focus();"></i>
+  </sm-search>
+</span>
+<ng-container *ngIf="searchActive">
+  <i *ngIf="(isSearching$ | async); else searchIcon" class="al-icon al-ico-dialog-x pointer" (click)="clearSearch()" smClickStopPropagation></i>
+  <ng-template #searchIcon>
+    <i class="al-icon al-ico-search pointer" (click)="openSearch()"></i>
+  </ng-template>
+</ng-container>

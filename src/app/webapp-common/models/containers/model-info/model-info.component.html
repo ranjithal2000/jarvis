@@ -1,0 +1,32 @@
+<sm-experiment-info-header-status-icon-label
+  [status]="getReadyStatus((selectedTableModel$ | async)?.ready || selectedModel?.ready)"
+>
+</sm-experiment-info-header-status-icon-label>
+<div class="model-info-container light-theme">
+  <sm-model-info-header
+    #modelInfoHeader
+    [model]="((selectedTableModel$ | async) || selectedModel)"
+    [editable]="!isExample"
+    [backdropActive]="backdropActive$ | async"
+    (modelNameChanged)="updateModelName($event)"
+    (closeInfoClicked)="closePanel()"
+  >
+  </sm-model-info-header>
+  <nav>
+    <span [routerLink]="['general']" routerLinkActive="active" #rlaGeneral="routerLinkActive" queryParamsHandling="merge">
+      <sm-navbar-item header="general" class="small-nav" [active]="rlaGeneral.isActive"></sm-navbar-item>
+    </span>
+    <span [routerLink]="['network']" routerLinkActive="active" #rlaNetwork="routerLinkActive" queryParamsHandling="merge">
+      <sm-navbar-item header="network" class="small-nav" [active]="rlaNetwork.isActive"></sm-navbar-item>
+    </span>
+    <span [routerLink]="['labels']" routerLinkActive="active" #rlaLabels="routerLinkActive" queryParamsHandling="merge">
+      <sm-navbar-item header="labels" class="small-nav" [active]="rlaLabels.isActive"></sm-navbar-item>
+    </span>
+    <span [routerLink]="['metadata']" routerLinkActive="active" #rlaMetadata="routerLinkActive" queryParamsHandling="merge">
+      <sm-navbar-item header="metadata" class="small-nav" [active]="rlaMetadata.isActive"></sm-navbar-item>
+    </span>
+  </nav>
+  <div class="model-info-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>

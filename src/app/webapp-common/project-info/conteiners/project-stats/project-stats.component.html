@@ -1,0 +1,26 @@
+<div class="header d-flex justify-content-center">
+  <button
+    class="btn btn-cml-primary"
+    [hidden]="!selectedVariant"
+    (click)="selectVariant()"
+    [smTooltip]="variantDisplay?.length > 30 ? variantDisplay : null"
+    
+  >{{variantDisplay}}</button>
+</div>
+<div class="line-chart-container" *ngIf="selectedVariant; else noData">
+  <sm-scatter-plot
+    [colors]="colors"
+    [data]="graphData"
+    [showLoadingOverlay]="loading"
+    (clicked)="experimentClicked($event)"
+  ></sm-scatter-plot>
+  <div class="legend">
+    <span *ngFor="let state of states" [style.--color]="statusToColor(state.type)" class="entry">{{state.label}}</span>
+  </div>
+</div>
+<ng-template #noData>
+  <div class="flex-middle overview-placeholder">
+    <i class="al-icon al-ico-no-scatter-graph xxl"></i>
+    <div class=" pointer no-data-title" (click)="selectVariant()">Select Metric & Variant</div>
+  </div>
+</ng-template>

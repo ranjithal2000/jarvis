@@ -1,0 +1,30 @@
+<form class="filter-form" (ngSubmit)="addTag(filterText)">
+  <mat-form-field appearance="standard"
+                  class="tags-menu-input"
+                  hideRequiredMarker="true"
+                  floatLabel="never">
+    <input #nameInput cdkFocusInitial smClickStopPropagation matInput placeholder="Add Tag" name="filter" [(ngModel)]="filterText" class="filter" autocomplete="off">
+      <i matSuffix
+         *ngIf="companyTags !== null"
+         [class]="'icon sm-md mr-3 ml-4 pointer ' + (tagsFilterByProject ? 'i-project-tags-filter-active' : 'i-project-tags-filter')"
+         smTooltip="Toggle all/project-only tags"
+         (click)="projectTagsFilterToggle()"
+         smClickStopPropagation></i>
+      <i matSuffix [class]="'al-icon sm-md mr2 ' + (filterText? 'al-ico-dialog-x pointer':'al-ico-search')" (click)="filterText && clear()" smClickStopPropagation></i>
+  </mat-form-field>
+</form>
+<div class="buttons-container" [class.searching]="filterText">
+  <button
+    class="item"
+    *ngIf="filterText && !allTags?.includes(filterText)"
+    (click)="addTag(filterText)"
+  >"{{filterText}}" <span class="new">(Create New)</span></button>
+  <button
+    *ngFor="let tag of allTags | filter:tags | filter:filterText; trackBy: trackByFn"
+    class="item"
+    (click)="addTag(tag)"
+    [smTooltip]="tag"  smShowTooltipIfEllipsis
+  >{{tag}}</button>
+</div>
+<hr>
+<button class="item" (click)="openTagColors()">Tag Colors</button>
