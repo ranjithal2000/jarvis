@@ -51,7 +51,8 @@ export class PortalComponent implements OnInit {
     name: [],
     id: [],
     version: [],
-    desc: []
+    desc: [],
+    url: []
   })
 
   formdata1 = this.formBuilder.group({
@@ -78,7 +79,8 @@ export class PortalComponent implements OnInit {
     name: [],
     version: [],
     desc: [],
-    id: []
+    id: [],
+    url:[]
   })
 
   formdata5 = this.formBuilder.group({
@@ -166,8 +168,9 @@ export class PortalComponent implements OnInit {
     let datasetId = this.formdata.controls['id'].value;
     let datasetVersion = this.formdata.controls['version'].value;
     let datasetDescription = this.formdata.controls['desc'].value;
+    let datasetUrl = this.formdata.controls['url'].value;
 
-    this.http.post('http://3.108.153.122:3000/data/insertData', { datasetName, datasetId, datasetVersion, datasetDescription })
+    this.http.post('http://3.108.153.122:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion, datasetDescription })
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
@@ -182,9 +185,10 @@ export class PortalComponent implements OnInit {
     let datasetName = this.formdata4.controls['name'].value;
     let datasetVersion = this.formdata4.controls['version'].value;
     let datasetDescription = this.formdata4.controls['desc'].value;
+    let datasetUrl = this.formdata4.controls['url'].value;
     let datasetId = this.formdata4.controls['id'].value.toString();
     console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
-    this.http.post('http://3.108.153.122:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription })
+    this.http.post('http://3.108.153.122:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription, datasetUrl })
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
@@ -215,6 +219,7 @@ export class PortalComponent implements OnInit {
     this.formdata4.controls['name'].setValue(data.datasetName);
     this.formdata4.controls['version'].setValue(data.datasetVersion);
     this.formdata4.controls['desc'].setValue(data.datasetDescription);
+    this.formdata4.controls['url'].setValue(data.datasetUrl);
 
   }
 
@@ -415,7 +420,8 @@ export class PortalComponent implements OnInit {
       name: [],
       id: [],
       version: [],
-      desc: []
+      desc: [],
+      url:[]
     })
 
 

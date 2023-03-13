@@ -53,7 +53,7 @@
                       fontIcon="visibility"></mat-icon></a>
                 </button> -->
                 <button class="btn btn-primary solution_run_btn">
-                  <a href={{data.solutionViewUrl}}>View</a>
+                  <a target="_blank" href={{data.solutionViewUrl}}>View</a>
                 </button>
               </div>
               <div class="btn-grp px-4 mt-1">
@@ -175,11 +175,11 @@
                 <div class="d-flex flex-row">
                   <div class="px-1">
                      <button class="btn btn-primary solution_run_btn">
-                     <a href={{data.modelViewUrl}}>View</a></button>
+                     <a target="_blank" href={{data.modelViewUrl}}>View</a></button>
                   </div>
                   <div>
                   <button class="btn btn-primary solution_run_btn">
-                      <a href={{data.modelRunUrl}} class="mb-1">Run</a></button>
+                      <a target="_blank" href={{data.modelRunUrl}} class="mb-1">Run</a></button>
                   </div>
                   <!-- <button mat-flat-button class="solution_run_btn">        -->
                   <a class="mt-1"><mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteModel(data)"
@@ -242,28 +242,31 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <div class="d-flex flex-row px-1 pt-1">
+            <div class="d-flex flex-column px-1">
               <div>
-                <label>{{data.datasetVersion}}</label>
-                <label>{{data.datasetDescription}}</label>
+                    <label><b>Version: {{data.datasetVersion}}</b></label><br>
+                    <label><b>Description: {{data.datasetDescription}}</b></label>
               </div><br>
               <!-- <div class="btn-grp px-1">
                   <button mat-flat-button class="solution_run_btn"> 
                   <a href={{data.solutionViewUrl}}>view</a>
                 </button>
                 </div> -->
-
+          <br> <div class="d-flex flex-row" >
+            <div class="px-1">
+              <button class="btn btn-primary solution_run_btn">
+              <a target="_blank" href={{data.datasetUrl}}>View</a></button>
+           </div>
               <div>
-
                 <!-- <button mat-flat-button class="solution_run_btn">        -->
-                <a ><mat-icon aria-hidden="false" aria-label="Example home icon" matTooltip="Delete Dataset"
+                <a class="px-3"><mat-icon aria-hidden="false" aria-label="Example home icon" matTooltip="Delete Dataset"
                     fontIcon="delete" (click)="deleteDataset(data)"></mat-icon></a>
                 <!-- </button> -->
               </div>
               <div>
                 <mat-icon [matMenuTriggerFor]="menu" (click)="getData(data)" style="font-size: 20px;">more_vert</mat-icon>
               </div>
-
+            </div>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
@@ -354,6 +357,11 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label style="font-size:16px;margin-left: 10px;"><b>Dataset Version</b></mat-label>
             <input matInput placeholder="Enter Id" formControlName="version">
+          </mat-form-field><br>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-size:16px;margin-left: 10px;"><b>Dataset URL</b></mat-label>
+            <input matInput placeholder="Enter URL" formControlName="url">
           </mat-form-field><br>
 
           <mat-form-field class="example-full-width" appearance="outline">
@@ -478,6 +486,11 @@
           <mat-label style="font-size:16px;margin-left: 10px;"><b>Dataset Version</b></mat-label>
           <input matInput placeholder=""  formControlName="version">
         </mat-form-field><br>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label style="font-size:16px;margin-left: 10px;"><b>Dataset URL</b></mat-label>
+          <input matInput placeholder=""  formControlName="url">
+        </mat-form-field><br>
+
 
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label style="font-size:16px;margin-left: 10px;"><b>Desc</b></mat-label>
