@@ -72,7 +72,8 @@ export class PortalComponent implements OnInit {
     solution_name: [],
     view_url: [],
     solution_tags: [],
-    solution_description: []
+    solution_description: [],
+    run_url:[]
   })
 
   formdata4 = this.formBuilder.group({
@@ -96,14 +97,13 @@ export class PortalComponent implements OnInit {
     solution_tags: [],
     solution_id:[],
     solution_version:[],
+    run_url:[],
+    view_url:[]
   })
   formdata8 = this.formBuilder.group({
     solution_id:[]
   })
   storeResponse: any;
-
-
-
   addModel() {
     debugger
     let modelName = this.formdata2.controls['project_name'].value;
@@ -236,6 +236,8 @@ export class PortalComponent implements OnInit {
     this.formdata7.controls['solution_id'].setValue(data.solutionId)
     this.formdata7.controls['solution_tags'].setValue(data.solutionTags)
     this.formdata7.controls['solution_description'].setValue(data.solutionDescription)
+    this.formdata7.controls['view_url'].setValue(data.solutionViewUrl)
+    this.formdata7.controls['run_url'].setValue(data.solutionRunUrl)
   }
 
   getdataset() {
@@ -251,11 +253,11 @@ export class PortalComponent implements OnInit {
   addSolution() {
     let solutionName = this.formdata3.controls['solution_name'].value;
     let solutionViewUrl = this.formdata3.controls['view_url'].value;
-    // let solutionRunUrl='runurl';
+    let solutionRunUrl= this.formdata3.controls['run_url'].value;
     let solutionTags = this.formdata3.controls['solution_tags'].value;
     let solutionDescription = this.formdata3.controls['solution_description'].value;
 
-    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription })
+    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -265,12 +267,13 @@ export class PortalComponent implements OnInit {
   editSolution() {
     let solutionName = this.formdata7.controls['solution_name'].value;
     let solutionId = this.formdata7.controls['solution_id'].value.toString();
-    // let solutionRunUrl='runurl';
+    let solutionRunUrl=this.formdata7.controls['run_url'].value;
+    let solutionViewUrl=this.formdata7.controls['view_url'].value;
     let solutionTags = this.formdata7.controls['solution_tags'].value;
     let solutionDescription = this.formdata7.controls['solution_description'].value;
     let solutionVersion = this.formdata7.controls['solution_version'].value
    
-    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionTags, solutionDescription })
+    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionTags, solutionDescription, solutionRunUrl, solutionVersion, solutionViewUrl })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
